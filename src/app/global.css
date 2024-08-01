@@ -16,8 +16,7 @@
   }
 }
 
-/* src/global.css */
-
+/* global.css */
 /* global.css */
 
 html, body {
@@ -70,22 +69,35 @@ html, body {
   padding-top: 4rem;
   flex: 1;
   background-color: #ffffff;
+  overflow-x: auto;
 }
 
 .header {
   background-color: #343a40;
   color: #fff;
-  padding: 1rem;
-  position: absolute;
-  top: 0;
+  height: 60px; /* Height of the AppBar */
+  width: calc(100% - 220px); /* Full width minus the sidebar width */
   left: 220px;
-  right: 0;
-  height: 4rem;
+  top: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .header .title {
-  flex-grow: 1;
+  font-size: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
 }
 
 .card {
@@ -141,4 +153,23 @@ html, body {
 .stats-card .info p {
   margin: 0;
   color: #666;
+}
+
+/* Settings Page */
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settings-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.settings-card h2 {
+  font-size: 1.25rem;
+  color: #333;
 }
