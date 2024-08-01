@@ -1,15 +1,9 @@
-// src/page.tsx
-"use client";
-
-import React from 'react';
-import Layout from './layout';
-
-const HomePage: React.FC = () => {
+const HomePage= () => {
   return (
-    <Layout>
+    <div className='min-h-[100vh] pt-4'>
       <h1>Welcome to the Admin Panel</h1>
       <p>Navigate using the sidebar to access different sections.</p>
-    </Layout>
+    </div>
   );
 };
 
