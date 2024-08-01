@@ -20,8 +20,6 @@
 
 /* global.css */
 
-/* global.css */
-
 html, body {
   margin: 0;
   padding: 0;
@@ -32,6 +30,7 @@ html, body {
   display: flex;
   min-height: 100vh;
   background-color: #e9ecef;
+  position: relative;
 }
 
 .sidebar {
@@ -67,8 +66,9 @@ html, body {
 
 .main-content {
   margin-left: 220px;
-  flex: 1;
   padding: 2rem;
+  padding-top: 4rem;
+  flex: 1;
   background-color: #ffffff;
 }
 
@@ -76,6 +76,12 @@ html, body {
   background-color: #343a40;
   color: #fff;
   padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 220px;
+  right: 0;
+  height: 4rem;
+  z-index: 1000;
 }
 
 .header .title {

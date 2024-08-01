@@ -1,15 +1,15 @@
 "use client";
+
 import React from 'react';
 import Layout from '../layout';
 import { Line, Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale } from 'chart.js';
-import StatsCard from './../components/StatsCard';
-import { TrendingUp, AttachMoney, ShoppingCart } from '@mui/icons-material';
+import { Chart as ChartJS, LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale, PointElement } from 'chart.js';
+import { Box, Typography, Card, CardContent } from '@mui/material';
 
-ChartJS.register(LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale);
+ChartJS.register(LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale, PointElement);
 
 const LineChartData = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
   datasets: [
     {
       label: 'Monthly Sales',
@@ -21,7 +21,7 @@ const LineChartData = {
 };
 
 const BarChartData = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
   datasets: [
     {
       label: 'Monthly Revenue',
@@ -33,47 +33,106 @@ const BarChartData = {
   ],
 };
 
+const ongoingProjects = [
+  { name: 'Project Alpha', status: 'In Progress' },
+  { name: 'Project Beta', status: 'Completed' },
+  { name: 'Project Gamma', status: 'Not Started' },
+  // Add more projects as needed
+];
+
 const Dashboard: React.FC = () => {
   return (
     <Layout>
-      <h1>Dashboard</h1>
-      <div className="stats-cards">
-        <div className="stats-card">
-          <div className="icon">
-            <TrendingUp />
-          </div>
-          <div className="info">
-            <h3>$12,345</h3>
-            <p>Sales</p>
-          </div>
-        </div>
-        <div className="stats-card">
-          <div className="icon">
-            <AttachMoney />
-          </div>
-          <div className="info">
-            <h3>$23,456</h3>
-            <p>Revenue</p>
-          </div>
-        </div>
-        <div className="stats-card">
-          <div className="icon">
-            <ShoppingCart />
-          </div>
-          <div className="info">
-            <h3>123</h3>
-            <p>Orders</p>
-          </div>
-        </div>
-      </div>
-      <div className="card">
-        <h2>Sales Overview</h2>
-        <Line data={LineChartData} />
-      </div>
-      <div className="card">
-        <h2>Revenue Overview</h2>
-        <Bar data={BarChartData} />
-      </div>
+      {/* <Typography variant="h4" gutterBottom>
+        Dashboard
+      </Typography> */}
+
+      <Box mb={4} />
+      <Box display="flex" gap={2} flexWrap="wrap" mb={4}>
+        <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Total Sales
+            </Typography>
+            <Typography variant="h4" color="primary">
+              $15,000
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Total Revenue
+            </Typography>
+            <Typography variant="h4" color="primary">
+              $45,000
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              New Orders
+            </Typography>
+            <Typography variant="h4" color="primary">
+              120
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
+      <Box display="flex" gap={2} flexWrap="wrap" mb={4}>
+        <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Sales Overview
+            </Typography>
+            <Line data={LineChartData} />
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Revenue Overview
+            </Typography>
+            <Bar data={BarChartData} />
+          </CardContent>
+        </Card>
+      </Box>
+      <Box>
+        <Typography variant="h5" gutterBottom>
+          Ongoing Projects
+        </Typography>
+        <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Box
+              sx={{
+                maxHeight: 300,
+                overflowY: 'auto',
+                '&::-webkit-scrollbar': { width: '8px' },
+                '&::-webkit-scrollbar-thumb': { backgroundColor: '#ddd', borderRadius: '4px' },
+              }}
+            >
+              {ongoingProjects.map((project, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '10px',
+                    borderBottom: '1px solid #eee',
+                    backgroundColor: index % 2 === 0 ? '#f9f9f9' : '#fff',
+                  }}
+                >
+                  <Typography variant="body1" sx={{ fontWeight: 'bold' }}>{project.name}</Typography>
+                  <Typography variant="body2" color={project.status === 'In Progress' ? 'warning.main' : project.status === 'Completed' ? 'success.main' : 'textSecondary'}>
+                    {project.status}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
     </Layout>
   );
 };

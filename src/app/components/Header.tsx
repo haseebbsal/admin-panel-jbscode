@@ -7,7 +7,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const Header: React.FC = () => {
   return (
-    <AppBar position="static" className="header">
+    <AppBar position="absolute" className="header">
       <Toolbar>
         <Typography variant="h6" className="title">
           Admin Panel
