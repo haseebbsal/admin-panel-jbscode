@@ -1,7 +1,4 @@
 "use client";
-
-"use client";
-
 import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Badge } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';

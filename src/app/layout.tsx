@@ -10,13 +10,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html>
       <body>
-        <div className="container">
-          <Sidebar />
-          <div className="main-content">
-            <Header />
-            <main>{children}</main>
-          </div>
+        <div className='flex gap-4 pr-4'>
+        <Sidebar/>
+        {children}
         </div>
+        
       </body>
     </html>
   );

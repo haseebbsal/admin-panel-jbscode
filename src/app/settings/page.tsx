@@ -6,11 +6,11 @@ import { Card, CardContent, Typography, TextField, Button, Box, Grid } from '@mu
 
 const Settings: React.FC = () => {
   return (
-    <Layout>
-      {/* <Typography variant="h4" gutterBottom>
+    <div className='min-h-[100vh] pt-4'>
+      {/* <Box mb={-6} /> */}
+      <Typography variant="h4" gutterBottom>
         Settings
-      </Typography> */}
-      <Box mb={4} />
+      </Typography>
       <Box display="flex" flexDirection="column" gap={3}>
         <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
           <CardContent>
@@ -56,7 +56,7 @@ const Settings: React.FC = () => {
           </CardContent>
         </Card>
       </Box>
-    </Layout>
+    </div>
   );
 };
 

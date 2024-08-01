@@ -1,10 +1,15 @@
+// src/pages/dashboard.tsx
+
 "use client";
 
 import React from 'react';
-import Layout from '../layout';
+// import Layout from '../layout';
 import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale, PointElement } from 'chart.js';
 import { Box, Typography, Card, CardContent } from '@mui/material';
+import NotificationDrawer from '../components/NotificationDrawer';
+import UserProfileMenu from '../components/UserProfileMenu';
+import TaskList from '../components/TaskList';
 
 ChartJS.register(LineElement, BarElement, Title, Tooltip, Legend, CategoryScale, LinearScale, PointElement);
 
@@ -42,12 +47,15 @@ const ongoingProjects = [
 
 const Dashboard: React.FC = () => {
   return (
-    <Layout>
-      {/* <Typography variant="h4" gutterBottom>
-        Dashboard
-      </Typography> */}
-
-      <Box mb={4} />
+    <div className='w-full pt-4'>
+    <Box  />
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
+        <Typography variant="h4">Dashboard</Typography>
+        <Box display="flex" alignItems="center">
+          <NotificationDrawer />
+          <UserProfileMenu />
+        </Box>
+      </Box>
       <Box display="flex" gap={2} flexWrap="wrap" mb={4}>
         <Card sx={{ flex: 1, minWidth: '300px', borderRadius: 2, boxShadow: 3 }}>
           <CardContent>
@@ -98,12 +106,20 @@ const Dashboard: React.FC = () => {
           </CardContent>
         </Card>
       </Box>
-      <Box>
-        <Typography variant="h5" gutterBottom>
-          Ongoing Projects
-        </Typography>
-        <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
+      <Box display="flex" gap={2} flexWrap="wrap" mb={4}>
+        <Card sx={{ flex: 1, minWidth: '250px', borderRadius: 2, boxShadow: 3 }}>
           <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Task List
+            </Typography>
+            <TaskList />
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: 2, minWidth: '400px', borderRadius: 2, boxShadow: 3 }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Ongoing Projects
+            </Typography>
             <Box
               sx={{
                 maxHeight: 300,
@@ -133,7 +149,7 @@ const Dashboard: React.FC = () => {
           </CardContent>
         </Card>
       </Box>
-    </Layout>
+    </div>
   );
 };
 
