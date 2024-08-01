@@ -1,30 +1,24 @@
 // src/layout.tsx
 "use client";
 
-import React, { ReactNode } from 'react';
+import React from 'react';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import './global.css';
 
-type LayoutProps = {
-  children: ReactNode;
-};
-
-const Layout = ({ children }: LayoutProps) => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <html lang="en">
-    <body>
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-blue-600 text-white p-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-bold">Performance Dashboard</h1>
-          <div>Institute for Policy Evaluation</div>
+    <html>
+      <body>
+        <div className="container">
+          <Sidebar />
+          <div className="main-content">
+            <Header />
+            <main>{children}</main>
+          </div>
         </div>
-      </header>
-      <main className="container mx-auto p-6">
-        {children}
-      </main>
-    </div>
-    </body>
+      </body>
     </html>
-    
   );
 };
 
