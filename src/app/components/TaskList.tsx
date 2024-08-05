@@ -1,9 +1,21 @@
-// src/components/TaskList.tsx
-
 "use client";
 
 import React, { useState } from 'react';
-import { Card, CardContent, Typography, Box, Checkbox, FormControlLabel, Divider, Button } from '@mui/material';
+import {
+  Card,
+  CardContent,
+  Typography,
+  Box,
+  Checkbox,
+  FormControlLabel,
+  Divider,
+  Button,
+  IconButton,
+  Tooltip,
+  TextField,
+  useTheme,
+} from '@mui/material';
+import { CheckCircle, CheckCircleOutline, FilterList, Clear } from '@mui/icons-material';
 
 interface Task {
   name: string;
@@ -18,8 +30,10 @@ const initialTasks: Task[] = [
 ];
 
 const TaskList: React.FC = () => {
+  const theme = useTheme();
   const [tasks, setTasks] = useState<Task[]>(initialTasks);
   const [filter, setFilter] = useState<'all' | 'completed' | 'pending'>('all');
+  const [newTaskName, setNewTaskName] = useState('');
 
   const handleCheckboxChange = (index: number) => {
     const newTasks = tasks.map((task, i) =>
@@ -38,20 +52,47 @@ const TaskList: React.FC = () => {
     setFilter(newFilter);
   };
 
+  const handleAddTask = () => {
+    if (newTaskName.trim() !== '') {
+      setTasks([...tasks, { name: newTaskName, completed: false }]);
+      setNewTaskName('');
+    }
+  };
+
+  const handleRemoveTask = (index: number) => {
+    const newTasks = tasks.filter((_, i) => i !== index);
+    setTasks(newTasks);
+  };
+
   return (
-    <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
+    <Card sx={{ borderRadius: 2, boxShadow: 3, overflow: 'hidden' }}>
       <CardContent>
-        {/* <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
           Task List
-        </Typography> */}
-        <Box mb={2}>
-          <Button variant="contained" onClick={() => handleFilterChange('all')}>
+        </Typography>
+        <Box mb={2} display="flex" gap={1}>
+          <Button
+            variant={filter === 'all' ? 'contained' : 'outlined'}
+            onClick={() => handleFilterChange('all')}
+            startIcon={<FilterList />}
+            sx={{ flex: 1 }}
+          >
             All
           </Button>
-          <Button variant="contained" onClick={() => handleFilterChange('completed')} sx={{ ml: 1 }}>
+          <Button
+            variant={filter === 'completed' ? 'contained' : 'outlined'}
+            onClick={() => handleFilterChange('completed')}
+            startIcon={<CheckCircle />}
+            sx={{ flex: 1 }}
+          >
             Completed
           </Button>
-          <Button variant="contained" onClick={() => handleFilterChange('pending')} sx={{ ml: 1 }}>
+          <Button
+            variant={filter === 'pending' ? 'contained' : 'outlined'}
+            onClick={() => handleFilterChange('pending')}
+            startIcon={<CheckCircleOutline />}
+            sx={{ flex: 1 }}
+          >
             Pending
           </Button>
         </Box>
@@ -63,23 +104,58 @@ const TaskList: React.FC = () => {
             </Typography>
           ) : (
             filteredTasks.map((task, index) => (
-              <Box key={index} display="flex" alignItems="center" mb={1}>
+              <Box
+                key={index}
+                display="flex"
+                alignItems="center"
+                mb={1}
+                p={1}
+                bgcolor={task.completed ? theme.palette.success.light : theme.palette.grey[100]}
+                borderRadius={1}
+                sx={{ transition: 'background-color 0.3s', '&:hover': { backgroundColor: theme.palette.grey[200] } }}
+              >
                 <FormControlLabel
                   control={
                     <Checkbox
                       checked={task.completed}
                       onChange={() => handleCheckboxChange(index)}
+                      sx={{ color: theme.palette.primary.main }}
                     />
                   }
                   label={task.name}
                 />
+                <Tooltip title="Remove Task">
+                  <IconButton
+                    color="error"
+                    onClick={() => handleRemoveTask(index)}
+                  >
+                    <Clear />
+                  </IconButton>
+                </Tooltip>
               </Box>
             ))
           )}
         </Box>
+        <Box mt={2} display="flex" alignItems="center" gap={1}>
+          <TextField
+            variant="outlined"
+            placeholder="New task"
+            value={newTaskName}
+            onChange={(e) => setNewTaskName(e.target.value)}
+            sx={{ flex: 1 }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddTask}
+            sx={{ height: '100%' }}
+          >
+            Add Task
+          </Button>
+        </Box>
         <Box mt={2}>
           <Typography variant="body2" color="textSecondary">
-            {filteredTasks.length} task(s) remaining
+            {filteredTasks.length} task{filteredTasks.length > 1 ? 's' : ''} remaining
           </Typography>
         </Box>
       </CardContent>
