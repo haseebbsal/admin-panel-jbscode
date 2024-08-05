@@ -1,9 +1,7 @@
-// src/components/UserProfileMenu.tsx
-
 "use client";
 
 import React, { useState } from 'react';
-import { Menu, MenuItem, IconButton } from '@mui/material';
+import { Menu, MenuItem, IconButton, Box, Typography } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 const UserProfileMenu: React.FC = () => {
@@ -18,20 +16,33 @@ const UserProfileMenu: React.FC = () => {
   };
 
   return (
-    <div>
+    <Box>
       <IconButton color="inherit" onClick={handleClick}>
-        <AccountCircle />
+        <AccountCircle sx={{ fontSize: 30 }} />
       </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        PaperProps={{
+          sx: {
+            borderRadius: 1,
+            boxShadow: 3,
+            mt: 1,
+          },
+        }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Typography variant="body1">Profile</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Typography variant="body1">My account</Typography>
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Typography variant="body1">Logout</Typography>
+        </MenuItem>
       </Menu>
-    </div>
+    </Box>
   );
 };
 

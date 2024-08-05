@@ -1,18 +1,15 @@
 "use client";
 
-// src/components/NotificationDrawer.tsx
-
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemText, IconButton, Badge, Box, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const notifications = [
-    'New user: Alice Johnson',
-    'Server usage high',
-    'System update available',
-    'Failed login attempt',
-  ];
-    
+  'New user: Alice Johnson',
+  'Server usage high',
+  'System update available',
+  'Failed login attempt',
+];
 
 const NotificationDrawer: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -28,32 +25,38 @@ const NotificationDrawer: React.FC = () => {
   };
 
   return (
-    <div>
+    <Box>
       <IconButton color="inherit" onClick={toggleDrawer(true)}>
         <Badge badgeContent={notifications.length} color="error">
-          <NotificationsIcon />
+          <NotificationsIcon sx={{ fontSize: 30 }} />
         </Badge>
       </IconButton>
       <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
         <Box
-          sx={{ width: 250 }}
+          sx={{ width: 300, p: 2 }}
           role="presentation"
           onClick={toggleDrawer(false)}
           onKeyDown={toggleDrawer(false)}
         >
-          <Typography variant="h6" sx={{ padding: '16px', borderBottom: '1px solid #ddd' }}>
+          <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold', borderBottom: '1px solid #ddd' }}>
             Notifications
           </Typography>
           <List>
-            {notifications.map((text, index) => (
-              <ListItem button key={index}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            {notifications.length === 0 ? (
+              <Typography variant="body2" sx={{ p: 2, textAlign: 'center' }}>
+                No new notifications
+              </Typography>
+            ) : (
+              notifications.map((text, index) => (
+                <ListItem button key={index} sx={{ '&:hover': { bgcolor: 'action.hover' } }}>
+                  <ListItemText primary={text} />
+                </ListItem>
+              ))
+            )}
           </List>
         </Box>
       </Drawer>
-    </div>
+    </Box>
   );
 };
 
