@@ -49,7 +49,7 @@ const BarChartComponent: React.FC = () => {
               },
               y: {
                 grid: {
-                  borderColor: grey[300]
+                //   borderColor: grey[300]
                 },
                 ticks: {
                   color: grey[700]
