@@ -28,6 +28,7 @@ const DataTableComponent: React.FC = () => {
           Employee Data
         </Typography>
         <MUIDataTable
+          title = ""
           data={data}
           columns={columns}
           options={{
@@ -46,7 +47,7 @@ const DataTableComponent: React.FC = () => {
               body: {
                 noMatch: 'No data available',
                 toolTip: 'Sort',
-                columnHeaderTooltip: column => `Sort for ${column.label}`
+                // columnHeaderTooltip: column => `Sort for ${column.label}`
               },
               pagination: {
                 next: 'Next Page',
@@ -61,23 +62,23 @@ const DataTableComponent: React.FC = () => {
                 viewColumns: 'View Columns',
               }
             },
-            customHeadRender: ({ index, label }) => (
-              <TableCell key={index} style={{ fontWeight: 'bold' }}>
-                {label}
-              </TableCell>
-            ),
-            customSort: (data, colIndex, order) => {
-              const sortedData = [...data].sort((a, b) => {
-                const valueA = a[colIndex];
-                const valueB = b[colIndex];
-                if (order === 'asc') {
-                  return valueA > valueB ? 1 : -1;
-                } else {
-                  return valueA < valueB ? 1 : -1;
-                }
-              });
-              return sortedData;
-            }
+            // customHeadRender: ({ index, label }) => (
+            //   <TableCell key={index} style={{ fontWeight: 'bold' }}>
+            //     {label}
+            //   </TableCell>
+            // ),
+            // customSort: (data, colIndex, order) => {
+            //   const sortedData = [...data].sort((a, b) => {
+            //     const valueA = a[colIndex];
+            //     const valueB = b[colIndex];
+            //     if (order === 'asc') {
+            //       return valueA > valueB ? 1 : -1;
+            //     } else {
+            //       return valueA < valueB ? 1 : -1;
+            //     }
+            //   });
+            //   return sortedData;
+            // }
           }}
         />
       </CardContent>
