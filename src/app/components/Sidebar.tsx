@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Dashboard, Settings, Person, Search} from '@mui/icons-material';
+import { Dashboard, Settings, Person, Search, Note} from '@mui/icons-material';
 import { List, ListItem, ListItemText, Divider, Box, Typography } from '@mui/material';
 
 const Sidebar: React.FC = () => {
@@ -50,7 +50,16 @@ const Sidebar: React.FC = () => {
           sx={{ borderRadius: 1, '&:hover': { bgcolor: 'action.hover' } }}
         >
           <Person sx={{ mr: 2 }} />
-          <ListItemText primary="Patent" />
+          <ListItemText primary="Patent Search" />
+        </ListItem>
+
+        <ListItem
+          button
+          onClick={() => router.push('/patent_details')}
+          sx={{ borderRadius: 1, '&:hover': { bgcolor: 'action.hover' } }}
+        >
+          <Note sx={{ mr: 2 }} />
+          <ListItemText primary="Patent Details" />
         </ListItem>
 
       </List>

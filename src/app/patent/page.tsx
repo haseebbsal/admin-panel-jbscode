@@ -47,19 +47,6 @@ const patentsData: Patent[] = [
   // Additional patents can be added here
 ];
 
-const patentDetailsData: PatentDetailsData = {
-  id: "US20080149005A1",
-  title: "Pallet for shipping and displaying of packaged goods",
-  abstract: "A pallet for shipping and displaying of packaged goods wherein the pallet comprises a plurality of stacking feet joined together by angled ribs to substantially prevent or inhibit spreading of the stacking feet due to high weight loads...",
-  filingDate: "2008-06-26",
-  inventors: ["Edward L. Stahl", "Stanley Charles Ellington", "Brent Clyde Mizell", "Travis Truman Crane", "Ira Donovan Youmans", "John P. Barry"],
-  assignees: ["Coca Cola Bottling Company United Inc"],
-  legalStatus: "Active",
-  citations: [
-    { id: "US1963360A", title: "Brush", priorityDate: "1932-06-18", publicationDate: "1934-06-19", assignee: "Floyd E Gibbin" },
-    { id: "DE502004004880D1", title: "TRANSPORT PALETTE OF PLASTIC", priorityDate: "2004-01-18", publicationDate: "2007-10-18", assignee: "Siopal Corp" }
-  ]
-};
 
 const PatentsPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
