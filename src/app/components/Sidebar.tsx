@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Dashboard, Settings } from '@mui/icons-material';
+import { Dashboard, Settings, Person, Search} from '@mui/icons-material';
 import { List, ListItem, ListItemText, Divider, Box, Typography } from '@mui/material';
 
 const Sidebar: React.FC = () => {
@@ -25,6 +25,7 @@ const Sidebar: React.FC = () => {
       </Typography>
       <Divider sx={{ mb: 2 }} />
       <List>
+      
         <ListItem
           button
           onClick={() => router.push('/dashboard')}
@@ -33,6 +34,7 @@ const Sidebar: React.FC = () => {
           <Dashboard sx={{ mr: 2 }} />
           <ListItemText primary="Dashboard" />
         </ListItem>
+
         <ListItem
           button
           onClick={() => router.push('/settings')}
@@ -41,6 +43,16 @@ const Sidebar: React.FC = () => {
           <Settings sx={{ mr: 2 }} />
           <ListItemText primary="Settings" />
         </ListItem>
+
+        <ListItem
+          button
+          onClick={() => router.push('/patent')}
+          sx={{ borderRadius: 1, '&:hover': { bgcolor: 'action.hover' } }}
+        >
+          <Person sx={{ mr: 2 }} />
+          <ListItemText primary="Patent" />
+        </ListItem>
+
       </List>
     </Box>
   );
